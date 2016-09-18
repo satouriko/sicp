@@ -1,0 +1,16 @@
+#lang racket
+; 二分递归 O(2^n)
+(define (fib_rec n)
+  (cond ((= n 0) 0)
+	((= n 1) 1)
+	(else (+ (fib_rec (- n 1))
+		 (fib_rec (- n 2))))))
+; 迭代 O(n)
+(define (fib_itr n)
+  (define (fib-iter a b count)
+    (cond ((= count 0) b)
+          (else (fib-iter (+ a b) a (- count 1)))))
+  (fib-iter 1 0 n))
+
+(fib_itr 45)
+(fib_rec 45)
